@@ -1,3 +1,4 @@
+Now try with simple-auth
 ## My Ember Authentication Playground following the Embercast Client-side Authentication Series
 
 Updated Ember, Handlebars and jQuery to most recent versions and made necessary changes to get basic
