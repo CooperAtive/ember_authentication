@@ -1,16 +1,9 @@
-## Embercast: Client-side Authentication, Part 1
+## My Ember Authentication Playgrount following the Embercast Client-side Authentication series
 
-This two-part series on client-side authentication focuses on how you
-can configure your single-page Ember app to query data from the server
-using token-based authentication. This first part focuses on basic app
-setup/organization, and how to build a username / password form to
-retrieve the token from the server.
+Updated Ember, Handlebars and jQuery to most recent versions and made necessary changes to get basic
+functionality and get rid of all deprication warnings.
 
-Part 2 will demonstrate how to use this token to perform queries in
-conjunction with Ember Model, as well as how to hack into the Ember
-Router to make it possible to recall and retry previously attempted 
-transitions.
-
+Everything below here is directly from EmberCast
 ## Install
 
 Clone this repository, and in the new directory, run:
