@@ -15,9 +15,12 @@
         <div class="navbar-inner">
           <a class="brand" href="#">Ember Digest</a>
           <ul class="nav pull-right">
-            <li>{{#link-to 'articles'}}Articles{{/link-to}}</li>
-            <li>{{#link-to 'photos'}}Photos{{/link-to}}</li>
+            <li> {{#link-to 'protected' }} Protected {{/link-to}} </li>
+            {{#if session.isAuthenticated}}
+            <li {{ action 'invalidateSession'}}> Logout </li>
+            {{else}}
             <li>{{#link-to 'login'}}Login{{/link-to}}</li>
+            {{/if}}
           </ul>
         </div>
       </div>
@@ -29,56 +32,36 @@
   <script type="text/x-handlebars" data-template-name="index">
     <h1>Welcome to Ember Digest</h1>
     <p>Here weve got all sorts of content!</p>
+    {{#unless session.isAuthenticated}}
+        <div class="alert alert-info">
+          You can {{#link-to 'login' classNames='alert-link'}}log in{{/link-to}} with login <code>letme</code> and password <code>in</code>.
+        </div>
+    {{/unless}}
+    </code>
   </script>
 
-  <script type="text/x-handlebars" data-template-name="articles">
-    <h2>Articles</h2>
-
-    {{#each model}}
-      <article>
-        <h3>{{title}}</h3>
-        <p>Posted by {{author}}</p>
-        <p>{{body}}</p>
-      </article>
-    {{/each}}
+  <script type="text/x-handlebars" data-template-name="protected">
+    <h2>Protected</h2>
   </script>
 
   <script type="text/x-handlebars" data-template-name="photos">
     <h2>Photos</h2>
-
-    <div class="row">
-      <ul id="photos" class="thumbnails">
-        {{#each model}}
-          <li class="span4">
-            <span class="thumbnail">
-              <img {{bind-attr src="src"}} />
-            </span>
-          </li>
-        {{/each}}
-      </ul>
-    </div>
   </script>
 
   <script type="text/x-handlebars" data-template-name="login">
-    {{#if loggedIn}}
-      <p>You are already logged in!</p>
-    {{else}}
-      <form class="form-inline" {{action login on="submit"}}>
+      <form class="form-inline" {{action 'authenticate' on='submit'}}>
         <h2>Log In</h2>
-        {{input value=username type="text" placeholder="Username"}}
-        {{input value=password type="password" placeholder="Password"}}
+        {{input id='identification' class='form-control' value=identification placeholder="Username"}}
+        {{input id='password' class='form-control' value=password placeholder="Password" type='password'}}
         {{input class="btn" type="submit" value="Log In"}}
       </form>
-      {{#if errorMessage}}
-        <div class="alert alert-error">{{errorMessage}}</div>
-      {{/if}}
-    {{/if}}
   </script>
 
   <script src="vendor/jquery/dist/jquery.js"></script>
   <script src="vendor/handlebars/handlebars.js"></script>
   <script src="vendor/ember/ember.js"></script>
   <script src="vendor/ember-simple-auth/ember-simple-auth.js"></script>
+  <script src="vendor/ember-simple-auth/ember-simple-auth-oauth2.js"></script>
 
   <script src="js/app.js"></script>
 
