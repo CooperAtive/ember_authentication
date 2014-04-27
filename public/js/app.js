@@ -1,12 +1,23 @@
 App = Ember.Application.create();
 
+App.initializer({
+    name: 'authentication',
+    initialize: function(container, application) {
+        Ember.SimpleAuth.setup(container, application);
+    }
+});
+
 
 // Routes
+App.Router = Ember.Router.extend();
+
 App.Router.map(function() {
     this.route('articles');
     this.route('photos');
     this.route('login');
 });
+
+App.ApplicationRoute = Ember.Route.extend(Ember.SimpleAuth.ApplicationRouteMixin, {})
 
 App.LoginRoute = Ember.Route.extend({
     setupController: function(controller, context) {

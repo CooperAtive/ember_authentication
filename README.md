@@ -1,4 +1,4 @@
-## My Ember Authentication Playgrount following the Embercast Client-side Authentication series
+## My Ember Authentication Playground following the Embercast Client-side Authentication Series
 
 Updated Ember, Handlebars and jQuery to most recent versions and made necessary changes to get basic
 functionality and get rid of all deprication warnings.
